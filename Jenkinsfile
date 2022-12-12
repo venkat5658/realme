@@ -2,13 +2,7 @@ pipeline {
     agent any
 
     stages {
-         stage ('git clone') {
-            steps {
-        echo "code is building"
-         git 'https://github.com/venkat5658/data.git'
-            }
-        }
-        
+         
         stage('build docker image') {
             steps {
                 echo "build docker image"
