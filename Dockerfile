@@ -1,4 +1,4 @@
-FROM httpd
-WORKDIR /usr/local/htppd/htdocs/
-COPY . /build-project/* /usr/local/htppd/htdocs/
+FROM ubuntu 
+WORKDIR /usr/local/apache2/htdocs/
+COPY . /build-project/* /usr/local/apache2/htdocs/
 EXPOSE 8080
