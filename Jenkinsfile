@@ -7,7 +7,7 @@ pipeline {
             steps {
                 echo "build docker image"
                 
-                  
+                  git 'https://github.com/venkat5658/realme.git'
                   sh 'sudo docker build -t httpd:2.4 . '
                  
                   
