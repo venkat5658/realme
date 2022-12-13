@@ -27,7 +27,7 @@ apiVersion: v1
 metadata:
   name: httpd-service
 spec:
-  type: LoadBalancer
+  type: NordPort
   selector:
     app: httpd
   ports:
