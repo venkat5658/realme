@@ -2,19 +2,23 @@ pipeline {
     agent any
 
     stages {
+        stage ('git clone') {
+            steps {
+        echo "code is building"
+         git 'https://github.com/venkat5658/realme.git'
+            }
+        }
          
         stage('build docker image') {
             steps {
                 echo "build docker image"
                 
-                  git 'https://github.com/venkat5658/realme.git'
-                  sh 'sudo docker build -t httpd:2.4 . '
-                 
-                  
-                  sh 'docker tag httpd:latest public.ecr.aws/b9y2y3b4/httpd:2.4'
-                  sh 'sudo chmod 666 /var/run/docker.sock'
               
-                  sh 'docker push public.ecr.aws/b9y2y3b4/httpd:2.4'
+                  sh 'sudo docker build -t httpd:2.4 . '
+                  sh 'sudo aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/b9y2y3b4'
+                  sh 'sudo docker tag httpd:latest public.ecr.aws/b9y2y3b4/httpd:2.4'
+                  sh 'sudo chmod 666 /var/run/docker.sock'
+                  sh 'sudo docker push public.ecr.aws/b9y2y3b4/httpd:2.4'
                
             }
         }
